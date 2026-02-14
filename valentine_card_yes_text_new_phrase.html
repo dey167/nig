@@ -3,37 +3,117 @@
 <head>
 <meta charset="UTF-8" />
 <title>Will You Be My Valentine?</title>
+
 <style>
 :root{--pink:#ff6f91;--cream:#fff4dc;--shadow:0 25px 60px rgba(0,0,0,.25)}
 *{box-sizing:border-box}
+
 body{
-  margin:0;height:100vh;overflow:hidden;
+  margin:0;
+  height:100vh;
+  overflow:hidden;
   background:radial-gradient(1000px 500px at 70% 10%, #fff 0%, var(--cream) 45%, #ffd1e1 100%);
-  display:flex;align-items:center;justify-content:center;
-  font-family:"Poppins","Comic Sans MS",cursive
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:"Poppins","Comic Sans MS",cursive;
 }
-.float{position:absolute;font-size:26px;opacity:.95;pointer-events:none;animation:rise linear infinite, sway ease-in-out infinite}
-@keyframes rise{from{transform:translateY(110vh) scale(.8)}to{transform:translateY(-30vh) scale(1.1)}}
-@keyframes sway{0%{margin-left:-14px}50%{margin-left:14px}100%{margin-left:-14px}}
-.card{background:white;border-radius:28px;padding:34px 40px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.25);max-width:440px;position:relative;z-index:2;animation:pop .6s ease-out}
-@keyframes pop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+
+.float{
+  position:absolute;
+  font-size:26px;
+  opacity:.95;
+  pointer-events:none;
+  animation:rise linear infinite, sway ease-in-out infinite;
+}
+
+@keyframes rise{
+  from{transform:translateY(110vh) scale(.8)}
+  to{transform:translateY(-30vh) scale(1.1)}
+}
+@keyframes sway{
+  0%{margin-left:-14px}
+  50%{margin-left:14px}
+  100%{margin-left:-14px}
+}
+
+.card{
+  background:white;
+  border-radius:28px;
+  padding:34px 40px;
+  text-align:center;
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+  max-width:440px;
+  position:relative;
+  z-index:2;
+  animation:pop .6s ease-out;
+}
+
+@keyframes pop{
+  from{transform:scale(.95);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
 h1{margin:0 0 10px;font-size:28px;color:#ff6f91}
 .card-text{font-size:14.5px;color:#555;line-height:1.45}
-.question{margin-top:16px;font-size:17px;font-weight:600;color:#7a1f3d;line-height:1.4}
-.buttons{margin-top:20px;display:flex;justify-content:center;gap:18px}
-.btn{padding:10px 22px;border-radius:999px;background:linear-gradient(135deg,#ffd1e4,#ff9fb7);color:#6b1632;font-size:15px;box-shadow:0 8px 18px rgba(255,90,122,.35);user-select:none}
-.btn.yes{background:linear-gradient(135deg,#ff9fb7,#ff5a7a);color:white;cursor:pointer}
-.btn.sybau{cursor:default;pointer-events:none}
-.result{margin-top:18px;font-size:18px;font-weight:800;color:#ff6f91}
-.confetti{position:fixed;top:-10px;font-size:22px;animation:fall linear forwards;pointer-events:none}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+.question{margin-top:16px;font-size:17px;font-weight:600;color:#7a1f3d}
+
+.buttons{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:18px;
+}
+
+.btn{
+  padding:10px 22px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#ffd1e4,#ff9fb7);
+  color:#6b1632;
+  font-size:15px;
+  box-shadow:0 8px 18px rgba(255,90,122,.35);
+  user-select:none;
+}
+
+.btn.yes{
+  background:linear-gradient(135deg,#ff9fb7,#ff5a7a);
+  color:white;
+  cursor:pointer;
+}
+
+.btn.sybau{
+  cursor:default;
+  pointer-events:none;
+}
+
+.result{
+  margin-top:18px;
+  font-size:18px;
+  font-weight:800;
+  color:#ff6f91;
+}
+
+.confetti{
+  position:fixed;
+  top:-10px;
+  font-size:22px;
+  animation:fall linear forwards;
+  pointer-events:none;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
 </style>
 </head>
+
 <body>
 
+<!-- AUDIO -->
 <audio id="bgm" src="Faye_Webster_-_Kingston_(mp3.pm).mp3" preload="auto"></audio>
 
 <script>
+// floating sunflowers & hearts
 for(let i=0;i<36;i++){
   const f=document.createElement('div');
   f.className='float';
@@ -43,11 +123,8 @@ for(let i=0;i<36;i++){
   f.style.animationDuration=(12+Math.random()*10)+'s,'+(3+Math.random()*3)+'s';
   document.body.appendChild(f);
 }
-function playMusic(){
-  const a=document.getElementById('bgm');
-  a.volume=0.7;
-  a.play().catch(()=>{});
-}
+
+// confetti celebration
 function celebrate(){
   for(let i=0;i<120;i++){
     const c=document.createElement('div');
@@ -59,9 +136,22 @@ function celebrate(){
     setTimeout(()=>c.remove(),4000);
   }
 }
+
+// YES button (NO music here)
 function yes(){
-  playMusic();
+  document.querySelector('.result').textContent =
+  "OMG OMGG OMGGGGG SHE SAID YESSSSS Y'ALL YAYAYAYAYAYA";
+  celebrate();
 }
+
+// PLAY MUSIC ONCE ON PAGE LOAD
+window.addEventListener("load", () => {
+  const a = document.getElementById("bgm");
+  a.pause();
+  a.currentTime = 0;
+  a.volume = 0.7;
+  a.play();
+});
 </script>
 
 <div class="card">
@@ -89,14 +179,5 @@ function yes(){
   <div class="result"></div>
 </div>
 
-  <script>
-window.addEventListener("load", () => {
-  const a = document.getElementById("bgm");
-  a.pause();
-  a.currentTime = 0;
-  a.play();
-});
-</script>
-  
 </body>
 </html>
