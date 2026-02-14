@@ -105,6 +105,7 @@ h1{margin:0 0 10px;font-size:28px;color:#ff6f91}
 
 <!-- AUDIO -->
 <audio id="bgm" src="Faye Webster - Kingston.mp3" preload="auto"></audio>
+
 <script>
 // floating sunflowers & hearts
 for(let i=0;i<36;i++){
@@ -117,7 +118,7 @@ for(let i=0;i<36;i++){
   document.body.appendChild(f);
 }
 
-// confetti
+// confetti celebration
 function celebrate(){
   for(let i=0;i<120;i++){
     const c=document.createElement('div');
@@ -130,26 +131,22 @@ function celebrate(){
   }
 }
 
-// YES button (NO music trigger)
+// YES button — music starts here (user interaction)
 function yes(){
-  document.querySelector('.result').textContent =
-  "OMG OMGG OMGGGGG SHE SAID YESSSSS Y'ALL YAYAYAYAYAYA";
-  celebrate();
-}
-
-// 🔒 MUSIC — PLAYS ONCE, NORMAL SPEED
-window.addEventListener("load", () => {
   const a = document.getElementById("bgm");
 
   a.pause();
   a.currentTime = 0;
-
   a.playbackRate = 1;
   a.defaultPlaybackRate = 1;
   a.volume = 0.7;
+  a.play().catch(()=>{});
 
-  a.play();
-});
+  document.querySelector('.result').textContent =
+    "OMG OMGG OMGGGGG SHE SAID YESSSSS Y'ALL YAYAYAYAYAYA";
+
+  celebrate();
+}
 </script>
 
 <div class="card">
@@ -179,4 +176,3 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
-
