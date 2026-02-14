@@ -5,7 +5,7 @@
 <title>Will You Be My Valentine?</title>
 
 <style>
-:root{--pink:#ff6f91;--cream:#fff4dc;--shadow:0 25px 60px rgba(0,0,0,.25)}
+:root{--pink:#ff6f91;--cream:#fff4dc}
 *{box-sizing:border-box}
 
 body{
@@ -46,12 +46,6 @@ body{
   max-width:440px;
   position:relative;
   z-index:2;
-  animation:pop .6s ease-out;
-}
-
-@keyframes pop{
-  from{transform:scale(.95);opacity:0}
-  to{transform:scale(1);opacity:1}
 }
 
 h1{margin:0 0 10px;font-size:28px;color:#ff6f91}
@@ -124,7 +118,7 @@ for(let i=0;i<36;i++){
   document.body.appendChild(f);
 }
 
-// confetti celebration
+// confetti
 function celebrate(){
   for(let i=0;i<120;i++){
     const c=document.createElement('div');
@@ -137,19 +131,24 @@ function celebrate(){
   }
 }
 
-// YES button (NO music here)
+// YES button (NO music trigger)
 function yes(){
   document.querySelector('.result').textContent =
   "OMG OMGG OMGGGGG SHE SAID YESSSSS Y'ALL YAYAYAYAYAYA";
   celebrate();
 }
 
-// PLAY MUSIC ONCE ON PAGE LOAD
+// 🔒 MUSIC — PLAYS ONCE, NORMAL SPEED
 window.addEventListener("load", () => {
   const a = document.getElementById("bgm");
+
   a.pause();
   a.currentTime = 0;
+
+  a.playbackRate = 1;
+  a.defaultPlaybackRate = 1;
   a.volume = 0.7;
+
   a.play();
 });
 </script>
@@ -181,3 +180,4 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
