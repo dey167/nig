@@ -61,9 +61,6 @@ function celebrate(){
 }
 function yes(){
   playMusic();
-  document.querySelector('.result').textContent =
-   'OMG OMGG OMGGGGG SHE SAID YESSSSS Y\'ALL YAYAYAYAYAYA';
-  celebrate();
 }
 </script>
 
@@ -92,5 +89,14 @@ function yes(){
   <div class="result"></div>
 </div>
 
+  <script>
+window.addEventListener("load", () => {
+  const a = document.getElementById("bgm");
+  a.pause();
+  a.currentTime = 0;
+  a.play();
+});
+</script>
+  
 </body>
 </html>
